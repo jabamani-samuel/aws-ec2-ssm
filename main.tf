@@ -111,22 +111,6 @@ provider "aws" {
 }
 
 
-resource "aws_security_group" "sec-sg" {
-  name = "security-sg"
-  ingress {
-    from_port   = 0
-    to_port     = 65535
-    protocol    = "all"
-    cidr_blocks = ["0.0.0.0/0"]
-  }
-
-  egress {
-    from_port   = 0
-    to_port     = 65535
-    protocol    = "all"
-    cidr_blocks = ["0.0.0.0/0"]
-  }
-}
 
 resource "aws_security_group_rule" "myInstance4" {
   type              = "ingress"
