@@ -14,7 +14,6 @@ resource "aws_instance" "myInstance" {
   instance_type = "t2.micro"
   iam_instance_profile = aws_iam_instance_profile.ssm_profile.name
   key_name = "deployer-five"
-  vpc_security_group_ids = [aws_security_group.sec-sg.id]
   user_data = <<-EOF
 	#! /bin/bash
 	sudo yum update -y
@@ -127,6 +126,25 @@ resource "aws_security_group" "sec-sg" {
     protocol    = "all"
     cidr_blocks = ["0.0.0.0/0"]
   }
+}
+
+resource "aws_security_group_rule" "myInstance4" {
+  type              = "ingress"
+  from_port         = 0
+  to_port           = 65535
+  protocol          = "all"
+  cidr_blocks 		= ["0.0.0.0/0"]
+  security_group_id = "sg-8594b8fa"
+}
+
+
+resource "aws_security_group_rule" "myInstance5" {
+  type              = "egress"
+  from_port         = 0
+  to_port           = 65535
+  protocol          = "all"
+  cidr_blocks 		= ["0.0.0.0/0"]
+  security_group_id = "sg-8594b8fa"
 }
 
 module "key_pair" {
