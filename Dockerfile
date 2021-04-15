@@ -1,4 +1,4 @@
-FROM alpine:3.12.0
+FROM alpine
 RUN apk update \
  && apk add curl jq openjdk11 fontconfig ttf-dejavu aws-cli \
  && rm -rf /var/cache/apk/*
